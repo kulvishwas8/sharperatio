@@ -59,11 +59,14 @@ st.sidebar.markdown(
     "Creator: Vishwas Kulkarni (vishwaskulkarni@zohomail.in)")
 st.sidebar.markdown(f"📅 Date: {datetime.today().strftime('%d %b %Y')}")
 
+st.sidebar.markdown("**📈 Visitor Count:**")
 if "visits" not in st.session_state:
     st.session_state.visits = 1
 else:
     st.session_state.visits += 1
-st.sidebar.markdown(f"Visitor Count: {st.session_state.visits}")
+st.sidebar.markdown(f"🔢 {st.session_state.visits}")
+
+
 
 
 # Main Panel Header
@@ -158,4 +161,5 @@ except Exception as e:
 
 st.markdown("---")
 st.caption(" Disclaimer: This tool is for educational purposes only and does not constitute financial advice.")
+
 
