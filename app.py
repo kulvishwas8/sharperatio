@@ -57,7 +57,7 @@ st.sidebar.markdown("---")
 st.sidebar.subheader("🛠️ How it Works")
 st.sidebar.markdown("""
 - Select a stock from the dropdown.
-- The app compares its Sharpe Ratio to NIFTY 50.
+- The app compares its Sharpe Ratio to NIFTY 500 sharpe ratio.
 - Sharpe Ratio = Return ÷ Volatility (annualized).
 """)
 
@@ -153,6 +153,7 @@ except Exception as e:
 
 st.markdown("---")
 st.caption(" Disclaimer: This tool is for educational purposes only and does not constitute financial advice.")
+
 
 
 
