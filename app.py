@@ -44,30 +44,22 @@ st.markdown("""
 # Sidebar Info
 
 st.sidebar.title("📊 Sharpe Ratio App")
-
-
-st.sidebar.markdown("---")
-st.sidebar.subheader("🛠️ How it Works")
-st.sidebar.markdown("""
-- Select a NSE listed stock from the dropdown.
-- The app compares its Sharpe Ratio of selected stock with Sharpe ratio of NIFTY 500.The Nifty 500 represents the top 500 companies based on full market capitalisation and average daily turnover from the eligible universe.
-(Represents 91.76% free float marketcap)
-- Sharpe Ratio = Return ÷ Volatility (annualized).
-""")
-
-st.sidebar.markdown(
-    "Creator: Vishwas Kulkarni (vishwaskulkarni@zohomail.in)")
+st.sidebar.markdown("👤 Creator:Vishwas Kulkarni (vishwaskulkarni@zohomail.in)")
 st.sidebar.markdown(f"📅 Date: {datetime.today().strftime('%d %b %Y')}")
-
-st.sidebar.markdown("**📈 Visitor Count:**")
+st.sidebar.markdown(" Visitor Count:")
 if "visits" not in st.session_state:
     st.session_state.visits = 1
 else:
     st.session_state.visits += 1
 st.sidebar.markdown(f"🔢 {st.session_state.visits}")
 
-
-
+st.sidebar.markdown("---")
+st.sidebar.subheader("🛠️ How it Works")
+st.sidebar.markdown("""
+- Select a stock from the dropdown.
+- The app compares its Sharpe Ratio to NIFTY 50.
+- Sharpe Ratio = Return ÷ Volatility (annualized).
+""")
 
 # Main Panel Header
 
@@ -161,5 +153,6 @@ except Exception as e:
 
 st.markdown("---")
 st.caption(" Disclaimer: This tool is for educational purposes only and does not constitute financial advice.")
+
 
 
