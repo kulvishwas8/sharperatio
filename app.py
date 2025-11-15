@@ -15,9 +15,9 @@ def load_nse_tickers():
     return [symbol + ".NS" for symbol in tickers]
 
 
-# -----------------------------
+
 # Custom CSS Styling
-# -----------------------------
+
 st.markdown("""
     <style>
         /* Main panel */
@@ -40,9 +40,9 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# -----------------------------
+
 # Sidebar Info
-# -----------------------------
+
 st.sidebar.title("📊 Sharpe Ratio App")
 
 
@@ -56,8 +56,8 @@ st.sidebar.markdown("""
 """)
 
 st.sidebar.markdown(
-    "**👤 Creator:** Vishwas Kulkarni (vishwaskulkarni@zohomail.in)")
-st.sidebar.markdown(f"**📅 Date:** {datetime.today().strftime('%d %b %Y')}")
+    "Creator: Vishwas Kulkarni (vishwaskulkarni@zohomail.in)")
+st.sidebar.markdown(f"📅 Date: {datetime.today().strftime('%d %b %Y')}")
 
 if "visits" not in st.session_state:
     st.session_state.visits = 1
@@ -65,35 +65,35 @@ else:
     st.session_state.visits += 1
 st.sidebar.markdown(f"Visitor Count: {st.session_state.visits}")
 
-# -----------------------------
+
 # Main Panel Header
-# -----------------------------
+
 st.title("📈 Sharpe Ratio Comparison")
 st.markdown("""Economist William F. Sharpe proposed the Sharpe ratio in 1966 after his work on the capital asset pricing model (CAPM),
 The Sharpe ratio compares a fund's historical or projected returns relative to an investment benchmark with the historical or expected variability of such returns.
 Excess returns are those above an industry benchmark or the risk-free rate of return.
 Here we are comparing Sharpe ratio of stock with Nifty 500 index as Benchmark.
 """)
-# -----------------------------
+
 # Load Stock List from CSV
-# -----------------------------
+
 # 📋 Load tickers and set defaults
 tickers = load_nse_tickers()
 default_stocks = [s for s in ['RELIANCE.NS'] if s in tickers]
 
 
-# -----------------------------
+
 # User Input
-# -----------------------------
+
 stock_symbol = st.selectbox(
     "🔍 Select a stock :", options=tickers, index=tickers.index("RELIANCE.NS") if "RELIANCE.NS" in tickers else 0
 )
 
 benchmark_symbol = "^CRSLDX"
 
-# -----------------------------
+
 # Data Download
-# -----------------------------
+
 
 
 @st.cache_data(show_spinner=False)
@@ -130,17 +130,17 @@ try:
         return np.sqrt(252) * (series.mean() / std) if std != 0 else np.nan
 
     latest_price = close_df["Close_stock"].iloc[-1]
-    st.markdown(f"**Latest Price of {stock_symbol}:** ₹{latest_price:.2f}")
+    st.markdown(f"  Latest Price of {stock_symbol}:   ₹{latest_price:.2f}")
 
     sharpe_stock = sharpe_ratio(close_df["ret_stock"])
     sharpe_nifty = sharpe_ratio(close_df["ret_nifty"])
 
-    # -----------------------------
+    
     # Results
-    # -----------------------------
+   
     st.subheader("📊 Results")
-    st.markdown(f"**Sharpe Ratio ({stock_symbol}):** `{sharpe_stock:.4f}`")
-    st.markdown(f"**Sharpe Ratio (NIFTY 500):** `{sharpe_nifty:.4f}`")
+    st.markdown(f"Sharpe Ratio ({stock_symbol}):  `{sharpe_stock:.4f}`")
+    st.markdown(f"Sharpe Ratio (NIFTY 500):   `{sharpe_nifty:.4f}`")
 
     if np.isnan(sharpe_stock) or np.isnan(sharpe_nifty):
         st.warning("Insufficient data to compute Sharpe Ratios.")
@@ -154,8 +154,8 @@ try:
 except Exception as e:
     st.error(f"Error: {e}")
 
-# -----------------------------
 # Disclaimer
-# -----------------------------
+
 st.markdown("---")
-st.caption("📌 **Disclaimer:** This tool is for educational purposes only and does not constitute financial advice.")
+st.caption(" Disclaimer: This tool is for educational purposes only and does not constitute financial advice.")
+
